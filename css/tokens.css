@@ -1,0 +1,94 @@
+/* tokens.css
+   Sistema de design do site do Dr. Danilo Smanioto.
+   Direcao: high-end-visual-design, arquetipo Soft Structuralism.
+   Tema claro travado: nenhuma secao inverte. O rodape escuro e o fechamento do documento. */
+
+:root {
+  /* ---------- Cor ----------
+     Um acento so, teal profundo, usado do cabecalho ao rodape. */
+  --surface-0: #F2F3F2;        /* fundo da pagina, bone frio */
+  --surface-1: #FFFFFF;        /* cards flutuantes */
+  --surface-2: #E6E9E7;        /* blocos com tinta leve */
+  --surface-3: #DBE0DD;        /* hairline forte, trilhos */
+
+  --ink-950: #0B1013;          /* rodape */
+  --ink-900: #10161A;          /* titulos, 16:1 sobre surface-0 */
+  --ink-600: #414B49;          /* corpo, 7,9:1 sobre surface-0 */
+  --ink-400: #5F6A66;          /* legendas, 4,9:1 sobre surface-0 (AA em 13px) */
+
+  --accent-700: #11574F;       /* botao primario, links, numeros. Branco sobre ele: 8,4:1 */
+  --accent-500: #16776B;       /* hover */
+  --accent-300: #6FC2B4;       /* links sobre fundo escuro, 9,4:1 sobre ink-950 */
+  --accent-050: #E3EEEB;       /* tinta de apoio */
+
+  --line: color-mix(in oklab, var(--ink-900) 11%, transparent);
+  --line-strong: color-mix(in oklab, var(--ink-900) 18%, transparent);
+  --line-dark: color-mix(in oklab, #FFFFFF 14%, transparent);
+
+  /* ---------- Tipografia ---------- */
+  --font-display: "Clash Display", "Geist", system-ui, sans-serif;
+  --font-sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* 7.2vw mantem a linha mais longa do hero ('Neurologia veterinaria')
+     dentro do container em qualquer largura. Teto de 5,5rem. */
+  --fs-display: clamp(2rem, 7.2vw, 5.5rem);
+  --fs-h2: clamp(1.95rem, 1.1rem + 3.3vw, 3.4rem);
+  --fs-h3: clamp(1.2rem, 1.06rem + 0.7vw, 1.6rem);
+  --fs-lead: clamp(1.0625rem, 1rem + 0.45vw, 1.3125rem);
+  --fs-body: 1.0625rem;
+  --fs-sm: 0.9375rem;
+  --fs-xs: 0.8125rem;
+
+  --lh-display: 0.96;
+  --lh-tight: 1.12;
+  --lh-body: 1.62;
+
+  --tracking-display: -0.025em;
+  --tracking-label: 0.16em;
+
+  /* ---------- Espaco ---------- */
+  --sp-1: 0.5rem;
+  --sp-2: 0.75rem;
+  --sp-3: 1rem;
+  --sp-4: 1.5rem;
+  --sp-5: 2rem;
+  --sp-6: 2.5rem;
+  --sp-7: 3.5rem;
+  --sp-8: 5rem;
+  --sp-9: 7rem;
+
+  --section-y: clamp(5rem, 9vw, 9.5rem);
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --container: 76rem;
+  --measure: 65ch;
+
+  /* ---------- Forma ----------
+     Regra travada: botoes e chips = pill. Cards = lg. Elementos dentro de card = md.
+     Casca externa do card de borda dupla = lg; nucleo interno = calc(lg - padding). */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-pill: 999px;
+  --bezel: 6px;
+
+  /* ---------- Profundidade ----------
+     Sombras tingidas com o tom do fundo, nunca preto puro. */
+  --shadow-soft: 0 24px 60px -32px rgba(11, 16, 19, 0.18);
+  --shadow-lift: 0 40px 90px -40px rgba(11, 16, 19, 0.26);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --shadow-inset-dark: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  /* ---------- Motion ---------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-base: 420ms;
+  --dur-slow: 900ms;
+
+  /* ---------- Camadas ----------
+     Escala unica. Nada de z-index arbitrario espalhado pelo CSS. */
+  --z-base: 1;
+  --z-sticky: 20;
+  --z-overlay: 40;
+  --z-grain: 60;
+}

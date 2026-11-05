@@ -1,0 +1,314 @@
+/* sections.css - estilos proprios de cada secao da home */
+
+/* =========================================================
+   Hero
+   ========================================================= */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 55% at 78% 22%,
+      color-mix(in oklab, var(--accent-700) 9%, transparent), transparent 70%),
+    radial-gradient(60% 50% at 8% 8%,
+      color-mix(in oklab, var(--accent-700) 5%, transparent), transparent 72%);
+}
+
+.hero > * { position: relative; }
+.hero__head > *,
+.hero__bottom > * { position: relative; }
+
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.75rem 0.3rem 0.65rem;
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+  background: color-mix(in oklab, var(--surface-1) 80%, transparent);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-inset);
+}
+
+.hero__eyebrow svg {
+  width: 13px;
+  height: 13px;
+  fill: var(--accent-700);
+  flex: 0 0 auto;
+}
+.hero h1 {
+  max-width: 100%;
+  hyphens: manual;
+}
+
+.hero__lead {
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  max-width: 46ch;
+  font-size: var(--fs-lead);
+  color: var(--ink-600);
+}
+
+/* ---------- Cartao de credencial, alinhado a base da colua ---------- */
+.credential {
+  position: relative;
+  align-self: end;
+}
+
+.credential__core {
+  padding: clamp(1.5rem, 3vw, 2rem);
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.credential__person {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.credential__photo {
+  width: 72px;
+  height: 72px;
+  flex: 0 0 auto;
+  border-radius: var(--r-pill);
+  object-fit: cover;
+  background: var(--surface-2);
+  box-shadow: 0 0 0 1px var(--line), 0 0 0 5px color-mix(in oklab, var(--accent-700) 9%, transparent);
+}
+
+.credential__name {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink-900);
+}
+
+.credential__role {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: var(--fs-sm);
+  color: var(--ink-400);
+}
+
+.credential__list {
+  display: grid;
+  gap: 0.85rem;
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+.credential__list li {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: 0.7rem;
+  align-items: start;
+  color: var(--ink-600);
+}
+
+.credential__list svg {
+  width: 16px;
+  height: 16px;
+  margin-top: 0.2rem;
+  fill: var(--accent-700);
+}
+
+.credential__list b {
+  color: var(--ink-900);
+  font-weight: 600;
+}
+
+/* =========================================================
+   Faixa de credibilidade, logo abaixo do hero
+   ========================================================= */
+.proof {
+  border-block: 1px solid var(--line);
+  background: color-mix(in oklab, var(--surface-1) 55%, transparent);
+}
+
+.proof__grid {
+  display: grid;
+  gap: var(--sp-5);
+  padding-block: clamp(2rem, 4vw, 2.75rem);
+}
+
+@media (min-width: 40rem) {
+  .proof__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 64rem) {
+  .proof__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--sp-4);
+  }
+}
+
+.proof__item {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+}
+
+.proof__value {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink-900);
+  font-variant-numeric: tabular-nums;
+}
+
+.proof__value span {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--ink-400);
+  margin-left: 0.35rem;
+}
+
+.proof__label {
+  font-size: var(--fs-sm);
+  color: var(--ink-600);
+  line-height: 1.45;
+  max-width: 28ch;
+}
+
+.proof__item a { font-weight: 500; }
+
+@media (min-width: 64rem) {
+  .proof__item:not(:first-child) {
+    padding-left: var(--sp-4);
+    border-left: 1px solid var(--line);
+  }
+}
+
+/* ---------- Imagem do hero ---------- */
+.hero__media {
+  margin: 0;
+  overflow: hidden;
+  box-shadow: var(--shadow-lift);
+}
+
+.hero__media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: calc(var(--r-lg) - var(--bezel));
+  background: var(--surface-2);
+}
+
+@media (max-width: 47.99rem) {
+  .hero__media img { aspect-ratio: 4 / 5; }
+}
+
+/* =========================================================
+   Sinais de alerta: pilha com sticky scroll.
+   Cada card gruda um pouco mais abaixo que o anterior, entao o topo dos
+   cards ja vistos continua a vista e a pilha cresce enquanto a pessoa rola.
+   Fluxo em bloco, nao grid: o bloco de contencao de um item sticky e o <ol>,
+   e e isso que permite o card deslizar por toda a altura da lista.
+   ========================================================= */
+.signs__grid {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: start;
+}
+
+@media (min-width: 64rem) {
+  .signs__grid {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+
+  .signs__intro {
+    position: sticky;
+    top: clamp(8rem, 16vh, 11rem);
+  }
+
+  .signs__intro .section-head { margin-bottom: 0; }
+}
+
+.signs__stack {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* O indice de cada card vem do CSS: atributo style no HTML e barrado pela CSP */
+.signs__card:nth-child(1) { --i: 0; }
+.signs__card:nth-child(2) { --i: 1; }
+.signs__card:nth-child(3) { --i: 2; }
+.signs__card:nth-child(4) { --i: 3; }
+.signs__card:nth-child(5) { --i: 4; }
+.signs__card:nth-child(6) { --i: 5; }
+.signs__card:nth-child(7) { --i: 6; }
+.signs__card:nth-child(8) { --i: 7; }
+
+.signs__card {
+  position: sticky;
+  top: calc(5.5rem + var(--i, 0) * 0.75rem);
+  display: grid;
+  gap: var(--sp-2);
+  align-content: center;
+  min-height: 15rem;
+  margin-bottom: var(--sp-3);
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  background: var(--surface-1);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-soft), var(--shadow-inset);
+}
+
+@media (min-width: 64rem) {
+  .signs__card {
+    top: calc(7.5rem + var(--i, 0) * 1rem);
+    min-height: 17rem;
+    margin-bottom: var(--sp-4);
+  }
+}
+
+/* O ultimo card nao precisa grudar: ele encerra a pilha */
+.signs__card--last { position: relative; top: auto; }
+
+.signs__icon {
+  width: 30px;
+  height: 30px;
+  fill: var(--accent-700);
+  margin-bottom: var(--sp-1);
+}
+
+.signs__card h3 { font-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.5rem); }
+
+.signs__card p {
+  font-size: var(--fs-sm);
+  color: var(--ink-600);
+  max-width: 44ch;
+}
+
+/* Quem fica para tras recua de leve, dando profundidade a pilha.
+   Scroll-driven animation nativa: sem JS e sem biblioteca.
+   Onde nao houver suporte, a pilha funciona do mesmo jeito, so sem o recuo. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 64rem) {
+    .signs__card:not(.signs__card--last) {
+      animation: card-recede linear both;
+      animation-timeline: view();
+      animation-range: exit -20% exit 90%;
+      transform-origin: center top;
+    }
+  }
+}
+
+@keyframes card-recede {
+  to {
+    transform: scale(0.955);
+    opacity: 0.72;
+  }
+}

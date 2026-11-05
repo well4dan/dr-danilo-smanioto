@@ -1,0 +1,268 @@
+/* components.css - botoes, cards e rodape */
+
+/* =========================================================
+   Botoes
+   Regra de forma: todo botao e pill. O icone mora dentro do
+   proprio circulo, encostado no padding interno direito.
+   ========================================================= */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.6rem 0.6rem 0.6rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--dur-base) var(--ease-in-out),
+              color var(--dur-base) var(--ease-in-out),
+              border-color var(--dur-base) var(--ease-in-out),
+              box-shadow var(--dur-base) var(--ease-in-out),
+              transform var(--dur-fast) var(--ease-in-out);
+}
+
+.button:active { transform: scale(0.98); }
+
+.button__icon {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-pill);
+  flex: 0 0 auto;
+  transition: transform var(--dur-base) var(--ease-out),
+              background var(--dur-base) var(--ease-in-out);
+}
+
+.button__icon svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+/* Primario: teal profundo, texto branco (8,4:1) */
+.button--primary {
+  background: var(--accent-700);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-soft), var(--shadow-inset-dark);
+}
+
+.button--primary .button__icon { background: rgba(255, 255, 255, 0.16); }
+
+.button--primary:hover,
+.button--primary:focus-visible {
+  background: var(--accent-500);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-lift), var(--shadow-inset-dark);
+}
+
+.button--primary:hover .button__icon,
+.button--primary:focus-visible .button__icon {
+  transform: translate(2px, -2px) scale(1.05);
+  background: rgba(255, 255, 255, 0.24);
+}
+
+/* Secundario: contorno sobre o fundo claro */
+.button--ghost {
+  background: color-mix(in oklab, var(--surface-1) 70%, transparent);
+  border-color: var(--line-strong);
+  color: var(--ink-900);
+}
+
+.button--ghost .button__icon { background: color-mix(in oklab, var(--ink-900) 7%, transparent); }
+
+.button--ghost:hover,
+.button--ghost:focus-visible {
+  background: var(--surface-1);
+  border-color: var(--ink-400);
+  color: var(--ink-900);
+}
+
+.button--ghost:hover .button__icon,
+.button--ghost:focus-visible .button__icon { transform: translate(2px, -2px); }
+
+/* Sobre fundo escuro */
+.button--onDark {
+  background: var(--accent-300);
+  color: var(--ink-950);
+}
+
+.button--onDark .button__icon { background: rgba(11, 16, 19, 0.14); }
+
+.button--onDark:hover,
+.button--onDark:focus-visible {
+  background: #8AD2C6;
+  color: var(--ink-950);
+}
+
+.button--onDark:hover .button__icon,
+.button--onDark:focus-visible .button__icon { transform: translate(2px, -2px) scale(1.05); }
+
+.button--quiet {
+  padding: 0.5rem 0.9rem;
+  background: transparent;
+  border-color: var(--line-dark);
+  color: #FFFFFF;
+}
+
+.button--quiet:hover,
+.button--quiet:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+/* =========================================================
+   Card com borda dupla: casca externa tingida + nucleo interno
+   ========================================================= */
+.shell {
+  padding: var(--bezel);
+  background: color-mix(in oklab, var(--ink-900) 4%, transparent);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+}
+
+.shell__core {
+  height: 100%;
+  background: var(--surface-1);
+  border-radius: calc(var(--r-lg) - var(--bezel));
+  box-shadow: var(--shadow-inset);
+}
+
+/* Card interativo com spotlight que segue o cursor */
+.card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--surface-1);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-soft), var(--shadow-inset);
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out),
+              border-color var(--dur-base) var(--ease-out);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 0%),
+    color-mix(in oklab, var(--accent-700) 14%, transparent),
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+/* Foco de teclado mostra exatamente o mesmo estado do hover */
+.card:is(:hover, :focus-visible, :focus-within) {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-lift), var(--shadow-inset);
+}
+
+.card:is(:hover, :focus-visible, :focus-within)::before { opacity: 1; }
+
+.card > * { position: relative; }
+
+.card--tinted {
+  background: var(--accent-050);
+  border-color: color-mix(in oklab, var(--accent-700) 16%, transparent);
+}
+
+.card--ink {
+  background: var(--ink-950);
+  border-color: transparent;
+  color: #B6B7B8;
+  box-shadow: var(--shadow-lift), var(--shadow-inset-dark);
+}
+
+.card--ink h3 { color: #FFFFFF; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card:is(:hover, :focus-visible, :focus-within) { transform: none; }
+  .card::before { display: none; }
+}
+
+/* =========================================================
+   Rodape escuro: fechamento do documento e ultimo CTA
+   ========================================================= */
+.footer {
+  position: relative;
+  background: var(--ink-950);
+  color: #B6B7B8;
+  padding-block: clamp(4rem, 8vw, 7rem) clamp(2rem, 4vw, 3rem);
+}
+
+/* O :not(.button) impede que a cor de link do rodape sobrescreva o texto dos
+   botoes, o que apagaria o rotulo sobre o proprio fundo do botao. */
+.footer a:not(.button) {
+  color: var(--accent-300);
+  text-decoration-color: color-mix(in oklab, var(--accent-300) 40%, transparent);
+}
+
+.footer a:not(.button):hover { color: #8AD2C6; }
+
+.footer__cta {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  margin-bottom: clamp(3rem, 6vw, 4rem);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.footer__cta h2 {
+  color: #FFFFFF;
+  max-width: 18ch;
+}
+
+.footer__cta p {
+  margin-top: var(--sp-3);
+  margin-bottom: var(--sp-5);
+  max-width: 44ch;
+  font-size: var(--fs-lead);
+}
+
+.footer__title {
+  font-family: var(--font-sans);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: #9FA1A2;
+  margin-bottom: var(--sp-3);
+}
+
+.footer__list {
+  display: grid;
+  gap: 0.6rem;
+  font-size: var(--fs-sm);
+}
+
+.footer__list a { text-decoration: none; }
+
+.footer__bottom {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line-dark);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3) var(--sp-5);
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: var(--fs-xs);
+  color: #9FA1A2;
+}

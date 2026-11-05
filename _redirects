@@ -1,0 +1,5 @@
+# Netlify / Cloudflare Pages
+# Pastas de trabalho nao sao publicas, mesmo que subam junto no deploy.
+/docs/*   /404.html   404
+/tools/*  /404.html   404
+/.claude/*  /404.html  404

@@ -1,0 +1,368 @@
+/* content.css - bento de atendimento, sobre, passos, depoimentos, FAQ e contato */
+
+/* =========================================================
+   Cards de atendimento: mesma foto, mesmo corpo, mesma altura
+   ========================================================= */
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.card__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--surface-2);
+}
+
+.card__body {
+  padding: clamp(1.35rem, 2.6vw, 1.75rem);
+  display: grid;
+  gap: var(--sp-2);
+  align-content: start;
+  flex: 1;
+}
+
+/* Altura minima do corpo: iguala os cards mesmo com textos de tamanhos diferentes */
+.card__body { min-height: 11rem; }
+
+.card__body h3 { font-size: clamp(1.1875rem, 1.05rem + 0.45vw, 1.4375rem); }
+
+.card__body p {
+  font-size: var(--fs-sm);
+  color: var(--ink-600);
+  max-width: 42ch;
+}
+
+/* =========================================================
+   Sobre
+   ========================================================= */
+.about__grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+@media (min-width: 58rem) {
+  .about__grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
+}
+
+.about__media {
+  margin: 0;
+  overflow: hidden;
+  max-width: 26rem;
+  box-shadow: var(--shadow-lift);
+}
+
+.about__media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: calc(var(--r-lg) - var(--bezel));
+  background: var(--surface-2);
+}
+
+.about__text > p {
+  margin-top: var(--sp-4);
+  max-width: var(--measure);
+  font-size: var(--fs-lead);
+}
+
+.about__text .credential__list {
+  margin-top: var(--sp-6);
+  padding-top: var(--sp-5);
+}
+
+/* =========================================================
+   Como e a consulta
+   ========================================================= */
+.steps__wrap { position: relative; }
+
+.steps {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  margin: 0;
+  padding: 0 0 0 clamp(2rem, 4vw, 3rem);
+  list-style: none;
+  counter-reset: step;
+}
+
+@media (min-width: 58rem) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(3rem, 6vw, 5rem);
+  }
+}
+
+.steps__rule {
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    var(--accent-700),
+    color-mix(in oklab, var(--accent-700) 20%, transparent));
+  border-radius: 2px;
+  transform-origin: top;
+}
+
+@media (min-width: 58rem) {
+  .steps__rule { display: none; }
+}
+
+.steps__item {
+  position: relative;
+  counter-increment: step;
+  display: grid;
+  gap: var(--sp-2);
+  align-content: start;
+}
+
+.steps__item::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent-700);
+  font-variant-numeric: tabular-nums;
+}
+
+.steps__item h3 { font-size: 1.3125rem; }
+
+.steps__item p {
+  color: var(--ink-600);
+  max-width: 46ch;
+}
+
+/* =========================================================
+   Depoimentos
+   ========================================================= */
+.quotes {
+  display: grid;
+  gap: var(--sp-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 52rem) {
+  .quotes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.quotes__item {
+  display: grid;
+  gap: var(--sp-3);
+  align-content: start;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--surface-1);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-soft), var(--shadow-inset);
+}
+
+.quotes__stars {
+  display: flex;
+  gap: 2px;
+}
+
+.quotes__stars svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--accent-700);
+}
+
+.quotes blockquote {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--ink-900);
+  text-wrap: pretty;
+}
+
+.quotes__who {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+.quotes__who span {
+  display: block;
+  margin-top: 0.2rem;
+  font-weight: 400;
+  color: var(--ink-400);
+}
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+.faq__list {
+  display: grid;
+  gap: var(--sp-2);
+  max-width: 52rem;
+}
+
+.faq__item {
+  background: var(--surface-1);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-soft), var(--shadow-inset);
+  overflow: hidden;
+}
+
+.faq__item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: clamp(1.1rem, 2.2vw, 1.5rem) clamp(1.25rem, 2.5vw, 1.75rem);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--ink-900);
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq__item summary::-webkit-details-marker { display: none; }
+
+.faq__item summary svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  fill: var(--accent-700);
+  transition: transform var(--dur-base) var(--ease-in-out);
+}
+
+.faq__item[open] summary svg { transform: rotate(180deg); }
+
+.faq__answer {
+  padding: 0 clamp(1.25rem, 2.5vw, 1.75rem) clamp(1.25rem, 2.5vw, 1.6rem);
+}
+
+.faq__answer p {
+  max-width: 62ch;
+  color: var(--ink-600);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .faq__item[open] .faq__answer {
+    animation: faq-in var(--dur-base) var(--ease-out) both;
+  }
+}
+
+@keyframes faq-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* =========================================================
+   Contato
+   ========================================================= */
+.contact__list {
+  display: grid;
+  gap: var(--sp-4);
+  margin: 0 0 var(--sp-6);
+  padding: 0;
+  list-style: none;
+}
+
+.contact__list li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: var(--sp-3);
+  align-items: start;
+}
+
+.contact__list svg {
+  width: 22px;
+  height: 22px;
+  margin-top: 0.15rem;
+  fill: var(--accent-700);
+}
+
+.contact__list b {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--ink-400);
+  margin-bottom: 0.2rem;
+}
+
+.contact__list span { line-height: 1.5; }
+
+.contact__visuals {
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.contact__map,
+.contact__room {
+  margin: 0;
+  overflow: hidden;
+}
+
+.contact__mapLink {
+  position: relative;
+  display: block;
+  border-radius: calc(var(--r-lg) - var(--bezel));
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.contact__map img,
+.contact__room img {
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--r-lg) - var(--bezel));
+  background: var(--surface-2);
+}
+
+.contact__room img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.contact__mapBadge {
+  position: absolute;
+  left: var(--sp-3);
+  bottom: var(--sp-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  background: var(--accent-700);
+  color: #FFFFFF;
+  border-radius: var(--r-pill);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  box-shadow: var(--shadow-soft);
+  transition: background var(--dur-base) var(--ease-in-out),
+              transform var(--dur-base) var(--ease-out);
+}
+
+.contact__mapBadge svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.contact__mapLink:is(:hover, :focus-visible) .contact__mapBadge {
+  background: var(--accent-500);
+  transform: translateY(-2px);
+}
+
+.contact__map figcaption {
+  padding: var(--sp-2) var(--sp-1) 0;
+  font-size: var(--fs-xs);
+  color: var(--ink-400);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__mapLink:is(:hover, :focus-visible) .contact__mapBadge { transform: none; }
+}

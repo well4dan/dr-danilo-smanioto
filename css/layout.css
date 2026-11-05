@@ -1,0 +1,108 @@
+/* layout.css - container, ritmo vertical e grades de secao */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--wide { max-width: 90rem; }
+
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+}
+
+.section--tight { padding-block: clamp(3rem, 6vw, 5.5rem); }
+
+.section--tinted { background: var(--surface-2); }
+
+/* Secoes longas abaixo da dobra entram no orcamento de render sob demanda */
+.section--deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 760px;
+}
+
+/* ---------- Cabecalho de secao ----------
+   Titulo e apoio empilhados. Sem paragrafo flutuando no canto superior direito. */
+.section-head {
+  max-width: 46rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.section-head > p {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-lead);
+  max-width: var(--measure);
+}
+
+/* ---------- Hero ----------
+   Faixa de cima: respiro mais o titulo em largura total.
+   Faixa de baixo: discurso e acao a esquerda, cartao de credencial a direita. */
+.hero {
+  position: relative;
+  padding-top: clamp(6.5rem, 11vw, 8.5rem);
+  padding-bottom: clamp(3.5rem, 7vw, 5.5rem);
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+}
+
+.hero__head { margin-bottom: clamp(2.5rem, 5.5vw, 4.75rem); }
+
+.hero__bottom {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 3.5rem);
+  align-items: start;
+}
+
+@media (min-width: 62rem) {
+  .hero__bottom {
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 23.5rem);
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: end;
+  }
+}
+
+/* ---------- Cards de atendimento ----------
+   Cinco cards do mesmo tamanho. Flex em vez de grid porque a ultima fileira
+   fica centrada, sem celula vazia sobrando. */
+.bento {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sp-3);
+}
+
+.bento > .card {
+  flex: 1 1 17rem;
+  max-width: 26rem;
+}
+
+@media (min-width: 68rem) {
+  .bento > .card {
+    flex: 0 0 calc((100% - 2 * var(--sp-3)) / 3);
+    max-width: none;
+  }
+}
+
+/* ---------- Grade de contato ---------- */
+.contact-grid {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+@media (min-width: 58rem) {
+  .contact-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); }
+}
+
+/* ---------- Rodape ---------- */
+.footer-grid {
+  display: grid;
+  gap: var(--sp-6);
+}
+
+@media (min-width: 52rem) {
+  .footer-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); }
+}

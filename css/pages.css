@@ -1,0 +1,63 @@
+/* pages.css - politica de privacidade e pagina 404 */
+
+.legal { padding-top: clamp(8rem, 13vw, 11rem); }
+
+.legal__body {
+  max-width: 44rem;
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.legal__body h2 {
+  margin-top: var(--sp-6);
+  font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+}
+
+.legal__body h2:first-child { margin-top: 0; }
+
+.legal__body p { max-width: var(--measure); }
+
+.legal__actions { margin-top: var(--sp-8); }
+
+.notfound {
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  padding-block: var(--sp-8);
+}
+
+.notfound__grid {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: center;
+}
+
+@media (min-width: 58rem) {
+  .notfound__grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
+}
+
+.notfound__code { display: block; margin-bottom: var(--sp-3); }
+
+.notfound h1 { max-width: 12ch; }
+
+.notfound__text {
+  margin: var(--sp-4) 0 var(--sp-6);
+  max-width: 42ch;
+  font-size: var(--fs-lead);
+}
+
+.notfound__media {
+  margin: 0;
+  overflow: hidden;
+  max-width: 28rem;
+  justify-self: end;
+  box-shadow: var(--shadow-lift);
+}
+
+.notfound__media img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: calc(var(--r-lg) - var(--bezel));
+  background: var(--surface-2);
+}

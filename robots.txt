@@ -1,0 +1,30 @@
+# robots.txt - producao
+# Homologacao: NAO publique este arquivo. Use o cabecalho X-Robots-Tag: noindex.
+
+User-agent: *
+Allow: /
+Disallow: /docs/
+Disallow: /tools/
+Disallow: /*?*utm_
+
+# Assistentes e buscadores de IA. Allow mantem o site citavel nas respostas.
+# Para bloquear o treinamento de um robo especifico, troque Allow por Disallow no bloco dele.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://danilosmaniotovet.com.br/sitemap.xml
